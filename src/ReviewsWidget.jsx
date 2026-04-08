@@ -51,6 +51,7 @@ export default function ReviewsWidget({ src }) {
         hideEmptyReviews={true}
         carouselAutoplay={true}
         carouselSpeed={4000}
+        carouselStyle={{ width: "98%" }}
       />
     </div>
   );
