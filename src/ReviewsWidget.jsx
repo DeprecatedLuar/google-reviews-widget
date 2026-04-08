@@ -52,6 +52,7 @@ export default function ReviewsWidget({ src }) {
         carouselAutoplay={true}
         carouselSpeed={4000}
         carouselStyle={{ width: "98%" }}
+        maxItems={5}
       />
     </div>
   );
