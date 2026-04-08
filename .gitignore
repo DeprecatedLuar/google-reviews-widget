@@ -6,6 +6,7 @@ _*
 
 # Dependencies
 node_modules/
+package-lock.json
 
 # Ignore all files without extensions
 *

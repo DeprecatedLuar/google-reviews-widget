@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Sarah Johnson",
+    "stars": 5,
+    "text": "Absolutely fantastic service. Fast, professional, and the results exceeded my expectations.",
+    "reviewUrl": "https://example.com/review/1"
+  },
+  {
+    "name": "James Miller",
+    "stars": 5,
+    "text": "Showed up on time and got everything done without any fuss. Would definitely hire again.",
+    "reviewUrl": "https://example.com/review/2"
+  },
+  {
+    "name": "Emily Carter",
+    "stars": 5,
+    "text": "Great experience from start to finish. Fair pricing and top quality work.",
+    "reviewUrl": "https://example.com/review/3"
+  },
+  {
+    "name": "Tom Richards",
+    "stars": 4,
+    "text": "Solid work, no complaints. Came in, handled the job, left the place clean.",
+    "reviewUrl": "https://example.com/review/4"
+  },
+  {
+    "name": "Laura Bennett",
+    "stars": 5,
+    "text": "Incredibly thorough and friendly. The attention to detail was impressive.",
+    "reviewUrl": "https://example.com/review/5"
+  },
+  {
+    "name": "Mark Evans",
+    "stars": 5,
+    "text": null
+  }
+]
