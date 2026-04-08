@@ -10,16 +10,19 @@ Install:
 npm install github:DeprecatedLuar/google-reviews-widget react-google-reviews
 ```
 
+> Note: the installed package name is `google-review-widget` (no 's'), even though the repo is `google-reviews-widget`.
+
 Use:
 
 ```jsx
 import ReviewsWidget from "google-review-widget";
-import "react-google-reviews/dist/index.css";
 
 <ReviewsWidget src="/reviews.json" />
 ```
 
-`src` points to your reviews JSON file (served as a static asset).
+`src` points to your reviews JSON file served as a static asset (e.g. `public/reviews.json`).
+
+The CSS is imported internally — no need to import `react-google-reviews/dist/index.css` yourself.
 
 ## CDN embed
 
@@ -42,4 +45,6 @@ import "react-google-reviews/dist/index.css";
 ]
 ```
 
-Reviews with `"text": null` are filtered out automatically.
+- `reviewUrl` — the direct link to the Google review; used as the review ID internally
+- Reviews with `"text": null` are filtered out automatically
+- **An empty array (`[]`) renders only the carousel arrows with no cards** — always have at least one review entry
