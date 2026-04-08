@@ -51,8 +51,6 @@ export default function ReviewsWidget({ src }) {
         hideEmptyReviews={true}
         carouselAutoplay={true}
         carouselSpeed={4000}
-        maxItems={5}
-        carouselClassName="rg-carousel-unconstrained"
       />
     </div>
   );
