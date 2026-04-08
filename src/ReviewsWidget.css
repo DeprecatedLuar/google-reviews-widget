@@ -1,0 +1,8 @@
+.slick-track {
+  align-items: stretch !important;
+}
+
+.slick-slide > div,
+.slick-slide > div > div {
+  height: 100%;
+}
