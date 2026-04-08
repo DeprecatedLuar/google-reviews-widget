@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+.rg-carousel-unconstrained {
+  max-width: none !important;
+}
+
 .slick-track {
   align-items: stretch !important;
 }

@@ -52,7 +52,7 @@ export default function ReviewsWidget({ src }) {
         carouselAutoplay={true}
         carouselSpeed={4000}
         maxItems={5}
-        carouselStyle={{ maxWidth: "none", padding: "0 40px 32px" }}
+        carouselClassName="rg-carousel-unconstrained"
       />
     </div>
   );
