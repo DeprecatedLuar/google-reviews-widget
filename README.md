@@ -1,6 +1,6 @@
 # Google Reviews Widget
 
-Embeddable Google reviews carousel.
+Embeddable Google reviews carousel for Luar's money business.
 
 ## React (recommended)
 
