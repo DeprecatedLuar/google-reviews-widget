@@ -22,17 +22,39 @@ function toReviewSchema(apify) {
 
 export default function ReviewsWidget({ src }) {
   const [reviews, setReviews] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
+    console.log("[ReviewsWidget] Fetching reviews from:", src);
     fetch(src)
-      .then((res) => res.json())
+      .then((res) => {
+        console.log("[ReviewsWidget] Fetch response:", res.status, res.ok);
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        return res.json();
+      })
       .then((data) => {
+        console.log("[ReviewsWidget] Received", data?.length, "reviews");
         const transformed = data
           .filter((r) => r.text != null)
           .map(toReviewSchema);
+        console.log("[ReviewsWidget] Transformed to", transformed.length, "reviews");
         setReviews(transformed);
+      })
+      .catch((err) => {
+        console.error("[ReviewsWidget] Error loading reviews:", err);
+        setError(err.message);
       });
   }, [src]);
+
+  if (error) {
+    return (
+      <div className="flex items-center justify-center py-12 text-red-500 text-sm">
+        Error loading reviews: {error}
+      </div>
+    );
+  }
 
   if (reviews === null) {
     return (
