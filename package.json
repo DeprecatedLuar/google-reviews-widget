@@ -11,11 +11,14 @@
   },
   "peerDependencies": {
     "react": ">=18.3.1",
-    "react-dom": ">=18.3.1",
-    "react-google-reviews": "^1.2.3"
+    "react-dom": ">=18.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
     "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "react-slick": "^0.31.0",
+    "slick-carousel": "^1.8.1"
   }
 }
