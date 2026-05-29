@@ -2,12 +2,24 @@
 
 Embeddable Google reviews carousel for Luar's money business.
 
-## React (recommended)
+## CDN Embed (Recommended)
 
-Install:
+For static sites or any HTML page:
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/style.css" />
+<div id="reviews-widget" data-src="/reviews.json"></div>
+<script src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/reviews-widget.js"></script>
+```
+
+Replace `/reviews.json` with the path to your reviews JSON file.
+
+## React Component
+
+For React projects, install as a package:
 
 ```bash
-npm install github:DeprecatedLuar/google-reviews-widget react-google-reviews
+npm install github:DeprecatedLuar/google-reviews-widget
 ```
 
 > Note: the installed package name is `google-review-widget` (no 's'), even though the repo is `google-reviews-widget`.
@@ -22,15 +34,20 @@ import ReviewsWidget from "google-review-widget";
 
 `src` points to your reviews JSON file served as a static asset (e.g. `public/reviews.json`).
 
-The CSS is imported internally — no need to import `react-google-reviews/dist/index.css` yourself.
+The CSS is bundled with the component — no additional imports needed.
 
-## CDN embed
+## Versioning
 
+**CDN version control:**
+- `@latest` - Automatically updates to the newest tagged release
+- `@v0.0.2` - Pins to a specific version (stable, never changes)
+
+Example with pinned version:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/style.css" />
-<div id="reviews-widget" data-src="/reviews.json"></div>
-<script src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/reviews-widget.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@v0.0.2/dist/reviews-widget.js"></script>
 ```
+
+Use `@latest` for convenience, or pin to a specific version for stability.
 
 ## reviews.json format
 
