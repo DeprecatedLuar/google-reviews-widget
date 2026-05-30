@@ -214,16 +214,32 @@
       </div>
     </section>
 
-    <!-- REVIEWS -->
+    <!-- REVIEWS (Dev version - direct import) -->
     <section id="reviews" class="reviews-bg py-16">
       <div class="max-w-5xl mx-auto px-6">
         <div class="mb-10">
           <div class="accent-line mb-3"></div>
           <h2 class="display font-bold text-3xl tracking-wide" style="color:var(--navy)">What people are saying</h2>
           <p class="text-gray-500 mt-2">Real reviews from real people who experienced the thing.</p>
+          <div class="inline-block bg-blue-100 text-blue-800 text-xs font-mono px-2 py-1 rounded mt-2">DEV: Direct import</div>
         </div>
       </div>
       <div id="root"></div>
+    </section>
+
+    <!-- REVIEWS (Local bundle test - production IIFE) -->
+    <section class="reviews-bg py-16 border-t-4 border-amber-500">
+      <div class="max-w-5xl mx-auto px-6">
+        <div class="mb-10">
+          <div class="accent-line mb-3" style="background:#e11d48"></div>
+          <h2 class="display font-bold text-3xl tracking-wide" style="color:var(--navy)">Local Bundle Test</h2>
+          <p class="text-gray-500 mt-2">Same reviews, loaded from local dist/ (tests production bundle before pushing)</p>
+          <div class="inline-block bg-green-100 text-green-800 text-xs font-mono px-2 py-1 rounded mt-2">PROD: Local dist/</div>
+        </div>
+      </div>
+      <link rel="stylesheet" href="/dist/style.css" />
+      <div id="reviews-widget" data-src="/dist/reviews.json"></div>
+      <script src="/dist/reviews-widget.js"></script>
     </section>
 
     <!-- CONTACT -->
