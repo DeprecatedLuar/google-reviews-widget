@@ -53,3 +53,4 @@ doc.md
 !LICENSE
 !shell.nix
 !.gitignore
+dev/public/dist

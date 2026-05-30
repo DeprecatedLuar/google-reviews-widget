@@ -227,18 +227,18 @@
       <div id="root"></div>
     </section>
 
-    <!-- REVIEWS (Local bundle test - production IIFE) -->
-    <section class="reviews-bg py-16 border-t-4 border-amber-500">
+    <!-- REVIEWS (CDN test - Local dist with new syntax) -->
+    <section class="reviews-bg py-16 border-t-4 border-purple-500">
       <div class="max-w-5xl mx-auto px-6">
         <div class="mb-10">
-          <div class="accent-line mb-3" style="background:#e11d48"></div>
-          <h2 class="display font-bold text-3xl tracking-wide" style="color:var(--navy)">Local Bundle Test</h2>
-          <p class="text-gray-500 mt-2">Same reviews, loaded from local dist/ (tests production bundle before pushing)</p>
-          <div class="inline-block bg-green-100 text-green-800 text-xs font-mono px-2 py-1 rounded mt-2">PROD: Local dist/</div>
+          <div class="accent-line mb-3" style="background:#7c3aed"></div>
+          <h2 class="display font-bold text-3xl tracking-wide" style="color:var(--navy)">Local Bundle (New Flexible Syntax)</h2>
+          <p class="text-gray-500 mt-2">Tests new data-reviews-widget attribute — supports multiple widgets per page</p>
+          <div class="inline-block bg-purple-100 text-purple-800 text-xs font-mono px-2 py-1 rounded mt-2">PROD: Local dist/ (flexible)</div>
         </div>
       </div>
       <link rel="stylesheet" href="/dist/style.css" />
-      <div id="reviews-widget" data-src="/dist/reviews.json"></div>
+      <div data-reviews-widget="/dist/reviews.json"></div>
       <script src="/dist/reviews-widget.js"></script>
     </section>
 

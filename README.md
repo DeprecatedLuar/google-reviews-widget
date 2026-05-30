@@ -12,22 +12,36 @@ Self-contained embeddable Google reviews carousel. Drop into any website with ze
 
 ## CDN Embed (Primary Usage)
 
-Drop this into any HTML page:
+**Step 1**: Create a `reviews.json` file and upload it to your site (e.g., in `/public/` or `/assets/`)
+
+**Step 2**: Add this to your HTML where you want the widget to appear:
 
 ```html
-<!-- 1. Load stylesheet -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/style.css" />
-
-<!-- 2. Add widget container -->
-<div id="reviews-widget" data-src="/reviews.json"></div>
-
-<!-- 3. Load widget script -->
+<div data-reviews-widget="/reviews.json"></div>
 <script src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/reviews-widget.js"></script>
 ```
 
-Replace `/reviews.json` with the path to your reviews JSON file (can be relative or absolute URL).
+Replace `/reviews.json` with the actual path to your JSON file.
 
-**That's it.** No npm install, no build step, no React on the host page required.
+**That's it.** No npm install, no build step, no React required on your page.
+
+### Multiple Widgets on Same Page
+
+You can have multiple widgets with different review sources:
+
+```html
+<div data-reviews-widget="/location-a-reviews.json"></div>
+<div data-reviews-widget="/location-b-reviews.json"></div>
+```
+
+### Backward Compatibility
+
+The old syntax still works:
+
+```html
+<div id="reviews-widget" data-src="/reviews.json"></div>
+```
 
 ## Direct Import (React Projects)
 
@@ -46,21 +60,17 @@ npm install github:DeprecatedLuar/google-reviews-widget
 
 > **Note**: Package name is `google-review-widget` (singular), repo is `google-reviews-widget` (plural).
 
-## Versioning
+## Version Pinning (Optional)
 
-**CDN version control:**
-- `@latest` - Automatically updates to newest tagged release (convenient, but can break)
-- `@v1.0.2` - Pins to a specific version (recommended for production)
+Using `@latest` (shown above) automatically gets the newest version. If you need stability, pin to a specific version:
 
-Example with pinned version:
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@v1.0.2/dist/style.css" />
-<script src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@v1.0.2/dist/reviews-widget.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@v1.0.3/dist/style.css" />
+<div data-reviews-widget="/reviews.json"></div>
+<script src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@v1.0.3/dist/reviews-widget.js"></script>
 ```
 
-**Recommendation**: Use `@latest` during development, pin to a specific version for production deploys.
-
-## reviews.json format
+## JSON File Format
 
 ```json
 [
