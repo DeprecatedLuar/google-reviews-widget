@@ -1,7 +1,7 @@
 /* Widget container - constrained on wide displays */
 .reviews-widget {
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   max-width: 1400px;
 }
 
