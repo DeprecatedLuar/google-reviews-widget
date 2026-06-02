@@ -10,7 +10,7 @@ Self-contained embeddable Google reviews carousel. Drop into any website with ze
 - **Custom carousel**: React Slick with Google Reviews styling
 - **Smart pagination**: Dots for <100 reviews, counter for ≥100
 
-## CDN Embed (Primary Usage)
+## Usage
 
 **Step 1**: Create a `reviews.json` file and upload it to your site (e.g., in `/public/` or `/assets/`)
 
@@ -35,6 +35,24 @@ You can have multiple widgets with different review sources:
 <div data-reviews-widget="/location-b-reviews.json"></div>
 ```
 
+### Using in React/Vue/Angular Projects
+
+The widget works in any framework. Just include the script tag in your `index.html` or use it in components:
+
+```jsx
+// React example
+function MyComponent() {
+  return (
+    <>
+      <div data-reviews-widget="/reviews.json"></div>
+      {/* Widget auto-mounts when script loads */}
+    </>
+  );
+}
+```
+
+Make sure the CSS and JS are loaded in your HTML (see Step 2 above).
+
 ### Backward Compatibility
 
 The old syntax still works:
@@ -42,23 +60,6 @@ The old syntax still works:
 ```html
 <div id="reviews-widget" data-src="/reviews.json"></div>
 ```
-
-## Direct Import (React Projects)
-
-If you're already using React 18.3+, you can import the component directly:
-
-```jsx
-import ReviewsWidget from "google-review-widget";
-
-<ReviewsWidget src="/reviews.json" />
-```
-
-Install from GitHub:
-```bash
-npm install github:DeprecatedLuar/google-reviews-widget
-```
-
-> **Note**: Package name is `google-review-widget` (singular), repo is `google-reviews-widget` (plural).
 
 ## Version Pinning (Optional)
 
