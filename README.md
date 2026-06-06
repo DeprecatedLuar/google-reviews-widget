@@ -86,4 +86,4 @@ Using `@latest` (shown above) automatically gets the newest version. If you need
 
 - `reviewUrl` — the direct link to the Google review; used as the review ID internally
 - Reviews with `"text": null` are filtered out automatically
-- **An empty array (`[]`) renders only the carousel arrows with no cards** — always have at least one review entry
+- **The widget only renders if there is at least one valid review** — an empty array or all-null reviews will not display the widget
