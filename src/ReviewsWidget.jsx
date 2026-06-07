@@ -188,20 +188,33 @@ export default function ReviewsWidget({ src }) {
   };
 
   const transformedReviews = reviews.map((r) => {
-    const name = r.name ?? "Anonymous";
-    // Mix shapes and thumbs styles for variety
-    const style = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 2 === 0
-      ? 'shapes'
-      : 'thumbs';
+    // Support both schema formats:
+    // - Simple: { name, stars, text, reviewUrl }
+    // - Google Maps: { authorName, rating, text, authorUrl, authorPhoto }
+    const name = r.name ?? r.authorName ?? "Anonymous";
+    const stars = r.stars ?? r.rating ?? 5;
+    const url = r.reviewUrl ?? r.authorUrl ?? null;
+    const photo = r.profilePhotoUrl ?? r.authorPhoto;
+
+    // Generate avatar only if no photo provided
+    let profilePhotoUrl;
+    if (photo) {
+      profilePhotoUrl = photo;
+    } else {
+      const style = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 2 === 0
+        ? 'shapes'
+        : 'thumbs';
+      profilePhotoUrl = `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(name)}`;
+    }
 
     return {
-      reviewId: r.reviewUrl ?? null,
+      reviewId: url,
       reviewer: {
         displayName: name,
-        profilePhotoUrl: `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(name)}`,
+        profilePhotoUrl,
         isAnonymous: false,
       },
-      starRating: r.stars,
+      starRating: stars,
       comment: r.text,
     };
   });
