@@ -1,0 +1,29 @@
+[
+  {
+    "review_id": "test_1",
+    "review_url": "https://www.google.com/maps/reviews/test1",
+    "reviewer_name": "John Smith",
+    "reviewer_photo_url": null,
+    "rating": 5,
+    "content": "Great service! Very professional and attentive. The staff was friendly and the facility was clean. Highly recommend to anyone looking for quality care.",
+    "reviewed_at": "2 months ago"
+  },
+  {
+    "review_id": "test_2",
+    "review_url": "https://www.google.com/maps/reviews/test2",
+    "reviewer_name": "Maria Garcia",
+    "reviewer_photo_url": "https://lh3.googleusercontent.com/a-/ALV-UjW4Q8Z9X1Y2",
+    "rating": 4,
+    "content": "Good experience overall. Wait time was a bit long but worth it.",
+    "reviewed_at": "1 month ago"
+  },
+  {
+    "review_id": "test_3",
+    "review_url": "https://www.google.com/maps/reviews/test3",
+    "reviewer_name": "Alex Johnson",
+    "reviewer_photo_url": null,
+    "rating": 5,
+    "content": "Absolutely fantastic! The team went above and beyond to ensure I was comfortable throughout the entire process. Professional, knowledgeable, and genuinely caring. You can tell they really care about their patients and take pride in their work. The results exceeded my expectations and I couldn't be happier with the outcome.",
+    "reviewed_at": "3 weeks ago"
+  }
+]

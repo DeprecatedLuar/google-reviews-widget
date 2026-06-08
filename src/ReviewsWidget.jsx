@@ -3,6 +3,13 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "./ReviewsWidget.css";
 
+/**
+ * Supported input formats (all normalized to internal schema):
+ * 1. Simple: { name, stars, text, reviewUrl, profilePhotoUrl }
+ * 2. Google Maps: { authorName, rating, text, authorUrl, authorPhoto }
+ * 3. Scraper: { reviewer_name, rating, content, review_url, reviewer_photo_url }
+ */
+
 const TRUNCATE_LENGTH = 150;
 
 function NextArrow({ onClick }) {
@@ -148,9 +155,20 @@ export default function ReviewsWidget({ src }) {
       })
       .then((data) => {
         console.log("[ReviewsWidget] Received", data?.length, "reviews");
-        const filtered = data.filter((r) => r.text != null);
-        console.log("[ReviewsWidget] Filtered to", filtered.length, "reviews");
-        setReviews(filtered);
+
+        // Normalize all formats to internal schema at the boundary
+        const normalized = data
+          .filter((r) => r.text != null || r.content != null)
+          .map((r) => ({
+            name: r.name ?? r.authorName ?? r.reviewer_name ?? "Anonymous",
+            stars: r.stars ?? r.rating ?? 5,
+            text: r.text ?? r.content ?? "",
+            url: r.reviewUrl ?? r.authorUrl ?? r.review_url ?? null,
+            photo: r.profilePhotoUrl ?? r.authorPhoto ?? r.reviewer_photo_url ?? null
+          }));
+
+        console.log("[ReviewsWidget] Normalized to", normalized.length, "reviews");
+        setReviews(normalized);
       })
       .catch((err) => {
         console.error("[ReviewsWidget] Error loading reviews:", err);
@@ -187,35 +205,28 @@ export default function ReviewsWidget({ src }) {
     beforeChange: (_, next) => setCurrentSlide(next),
   };
 
-  const transformedReviews = reviews.map((r) => {
-    // Support both schema formats:
-    // - Simple: { name, stars, text, reviewUrl }
-    // - Google Maps: { authorName, rating, text, authorUrl, authorPhoto }
-    const name = r.name ?? r.authorName ?? "Anonymous";
-    const stars = r.stars ?? r.rating ?? 5;
-    const url = r.reviewUrl ?? r.authorUrl ?? null;
-    const photo = r.profilePhotoUrl ?? r.authorPhoto;
-
+  // Transform normalized data to component format
+  const transformedReviews = reviews.map((review) => {
     // Generate avatar only if no photo provided
     let profilePhotoUrl;
-    if (photo) {
-      profilePhotoUrl = photo;
+    if (review.photo) {
+      profilePhotoUrl = review.photo;
     } else {
-      const style = Math.abs(name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 2 === 0
+      const style = Math.abs(review.name.split('').reduce((a, c) => a + c.charCodeAt(0), 0)) % 2 === 0
         ? 'shapes'
         : 'thumbs';
-      profilePhotoUrl = `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(name)}`;
+      profilePhotoUrl = `https://api.dicebear.com/7.x/${style}/svg?seed=${encodeURIComponent(review.name)}`;
     }
 
     return {
-      reviewId: url,
+      reviewId: review.url,
       reviewer: {
-        displayName: name,
+        displayName: review.name,
         profilePhotoUrl,
         isAnonymous: false,
       },
-      starRating: stars,
-      comment: r.text,
+      starRating: review.stars,
+      comment: review.text,
     };
   });
 

@@ -73,17 +73,52 @@ Using `@latest` (shown above) automatically gets the newest version. If you need
 
 ## JSON File Format
 
+The widget supports **three input formats** and auto-detects which one you're using:
+
+### Format 1: Simple (Recommended)
+
 ```json
 [
   {
     "name": "Jane Doe",
     "stars": 5,
     "text": "Great service!",
-    "reviewUrl": "https://maps.google.com/..."
+    "reviewUrl": "https://maps.google.com/...",
+    "profilePhotoUrl": "https://..."
   }
 ]
 ```
 
-- `reviewUrl` — the direct link to the Google review; used as the review ID internally
-- Reviews with `"text": null` are filtered out automatically
+### Format 2: Google Maps API
+
+```json
+[
+  {
+    "authorName": "Jane Doe",
+    "rating": 5,
+    "text": "Great service!",
+    "authorUrl": "https://maps.google.com/...",
+    "authorPhoto": "https://..."
+  }
+]
+```
+
+### Format 3: Scraper Format
+
+```json
+[
+  {
+    "reviewer_name": "Jane Doe",
+    "rating": 5,
+    "content": "Great service!",
+    "review_url": "https://maps.google.com/...",
+    "reviewer_photo_url": "https://..."
+  }
+]
+```
+
+**Notes:**
+- `reviewUrl` / `authorUrl` / `review_url` — the direct link to the Google review; used as the review ID internally
+- `profilePhotoUrl` / `authorPhoto` / `reviewer_photo_url` — optional; if omitted, generates a unique avatar per reviewer
+- Reviews with `"text": null` or `"content": null` are filtered out automatically
 - **The widget only renders if there is at least one valid review** — an empty array or all-null reviews will not display the widget

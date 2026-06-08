@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CDN Test</title>
+  <style>
+    body { margin: 40px; font-family: sans-serif; }
+    .test-section { margin: 40px 0; padding: 20px; border: 2px solid #ccc; }
+    .test-section h2 { margin-top: 0; }
+  </style>
+</head>
+<body>
+  <h1>Widget CDN Test</h1>
+
+  <!-- Test 1: Local dist files -->
+  <div class="test-section">
+    <h2>Test 1: Local dist/ files</h2>
+    <link rel="stylesheet" href="./dist/style.css" />
+    <div id="reviews-widget" data-src="./dist/reviews.json"></div>
+    <script src="./dist/reviews-widget.js"></script>
+  </div>
+
+  <!-- Test 2: CDN (if pushed to GitHub) -->
+  <div class="test-section">
+    <h2>Test 2: jsDelivr CDN @latest</h2>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/style.css" />
+    <div id="reviews-widget-cdn" data-src="https://cdn.jsdelivr.net/gh/DeprecatedLuar/google-reviews-widget@latest/dist/reviews.json"></div>
+    <script>
+      // Manually mount the second instance since the bundle only auto-mounts #reviews-widget
+      window.addEventListener('load', () => {
+        console.log('Checking for widgets...');
+        console.log('Widget 1:', document.getElementById('reviews-widget'));
+        console.log('Widget 2:', document.getElementById('reviews-widget-cdn'));
+      });
+    </script>
+  </div>
+
+  <script>
+    // Debug: Check for errors
+    window.addEventListener('error', (e) => {
+      console.error('Error caught:', e.message, e.filename, e.lineno);
+    });
+
+    setTimeout(() => {
+      console.log('Page loaded. Checking mount status...');
+      const widget1 = document.getElementById('reviews-widget');
+      const widget2 = document.getElementById('reviews-widget-cdn');
+      console.log('Widget 1 element:', widget1);
+      console.log('Widget 1 has children:', widget1?.children.length);
+      console.log('Widget 2 element:', widget2);
+      console.log('Widget 2 has children:', widget2?.children.length);
+    }, 2000);
+  </script>
+</body>
+</html>
